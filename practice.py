@@ -9,7 +9,7 @@ HF_CACHE_DIR = r"C:\Arun\IIT-M\hf-cache"
 os.makedirs(HF_CACHE_DIR, exist_ok=True)
 
 # Hugging Face Setup & Text Generation
-def hf_setup_text_generation():
+def hf_setup_text_generation() -> None:
     print("--- 1. Hugging Face: Text Generation ---")
     try:
         # Small causal language model (good for demo)
@@ -56,6 +56,43 @@ def hf_setup_text_generation():
     except Exception as e:
         print(f"Could not run text generation (requires internet download/setup): {e}")
 
+# -------------------------------
+# Part 2: Hugging Face – Tokenisation
+# -------------------------------
+def hf_tokenization_demo() -> None:
+    print("--- 2: Hugging Face - Tokenization ---")
+    try:
+        # Small causal language model (good for demo)
+        model_name = "distilgpt2"
+        print(f"\n[HF] Loading model and tokenizer: {model_name} ...")
+
+        tokenizer = AutoTokenizer.from_pretrained(
+            model_name,
+            cache_dir=HF_CACHE_DIR
+        )
+
+        text = "LLMs are powerful tools for natural language understanding."
+        print(f"\n[HF] Original text:\n{text}\n")
+
+        # Encode: text → token IDs
+        encoded = tokenizer(text)
+        print("[HF] Token IDs:\n", encoded["input_ids"])
+
+        # Show tokens (subword pieces)
+        tokens = tokenizer.convert_ids_to_tokens(encoded["input_ids"])
+        print("\n[HF] Tokens:")
+        for tok in tokens:
+            print(tok, end=" | ")
+        print("\n")
+
+        # Decode: IDs → text
+        decoded = tokenizer.decode(encoded["input_ids"])
+        print("[HF] Decoded back from IDs:\n", decoded)
+        print("\n" + "-" * 60)
+
+    except Exception as e:
+        print(f"Could not run text generation (requires internet download/setup): {e}")
 
 if __name__ == "__main__":
-    hf_setup_text_generation()
+    # hf_setup_text_generation()
+    hf_tokenization_demo()
