@@ -8,6 +8,7 @@ import numpy as np
 HF_CACHE_DIR = r"C:\Arun\IIT-M\hf-cache"
 os.makedirs(HF_CACHE_DIR, exist_ok=True)
 
+# Section A: LLM Foundations & Hugging Face
 # Hugging Face Setup & Text Generation
 def hf_setup_text_generation() -> None:
     print("--- 1. Hugging Face: Text Generation ---")
@@ -55,6 +56,7 @@ def hf_setup_text_generation() -> None:
 
     except Exception as e:
         print(f"Could not run text generation (requires internet download/setup): {e}")
+        exit()
 
 # -------------------------------
 # Part 2: Hugging Face – Tokenisation
@@ -92,7 +94,11 @@ def hf_tokenization_demo() -> None:
 
     except Exception as e:
         print(f"Could not run text generation (requires internet download/setup): {e}")
+        exit()
 
 if __name__ == "__main__":
+    # Section A: LLM Foundations & Hugging Face
     # hf_setup_text_generation()
-    hf_tokenization_demo()
+    # print("*" * 100)
+    # hf_tokenization_demo()
+    print("*" * 100)
